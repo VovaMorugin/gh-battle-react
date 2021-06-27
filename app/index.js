@@ -1,33 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
 
-function isAuthed() {
-    return true
-}
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import './index.css'
+import Popular from './components/Popular'
+import Battle from './components/Battle'
 
 class App extends React.Component {
-    render() {
-        const authed = isAuthed()
-
-        const name = 'Vladimir'
-        return (
-            <div>
-                <h1>
-                    {
-                        authed === true 
-                        ? <h1>Welcome back!</h1>
-                        : <h1>Login to see your dashboard</h1>
-                    }
-
-
-                </h1>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className='container'>
+        <Battle />
+      </div>
+    )
+  }
 }
 
 ReactDOM.render(
-    <App />,
-    document.getElementById('app')
+  <App />,
+  document.getElementById('app')
 )
