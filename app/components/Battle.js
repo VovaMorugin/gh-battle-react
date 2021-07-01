@@ -5,7 +5,7 @@ import Results from './Results'
 import { ThemeConsumer } from '../contexts/theme'
 import { Link } from 'react-router-dom'
 
-function Instructions() {
+function Instructions () {
   return (
     <ThemeConsumer>
       {({ theme }) => (
@@ -34,22 +34,15 @@ function Instructions() {
 }
 
 class PlayerInput extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      username: ''
-    }
-
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+  state = {
+    username: ''
   }
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault()
 
     this.props.onSubmit(this.state.username)
   }
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       username: event.target.value
     })
@@ -92,7 +85,7 @@ PlayerInput.propTypes = {
   label: PropTypes.string.isRequired
 }
 
-function PlayerPreview({ username, onReset, label }) {
+function PlayerPreview ({ username, onReset, label }) {
   return (
     <ThemeConsumer>
       {({ theme }) => (
@@ -108,7 +101,7 @@ function PlayerPreview({ username, onReset, label }) {
               <a
                 href={`https://github.com/${username}`}
                 className='link'>
-                {username}
+                  {username}
               </a>
             </div>
             <button className='btn-clear flex-center' onClick={onReset}>
@@ -128,31 +121,22 @@ PlayerPreview.propTypes = {
 }
 
 export default class Battle extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      playerOne: null,
-      playerTwo: null,
-
-    }
-
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleReset = this.handleReset.bind(this)
+  state = {
+    playerOne: null,
+    playerTwo: null,
   }
-  handleSubmit(id, player) {
+  handleSubmit = (id, player) => {
     this.setState({
       [id]: player
     })
   }
-  handleReset(id) {
+  handleReset = (id) => {
     this.setState({
       [id]: null
     })
   }
   render() {
     const { playerOne, playerTwo } = this.state
-
 
     return (
       <React.Fragment>
@@ -163,26 +147,26 @@ export default class Battle extends React.Component {
           <div className='row space-around'>
             {playerOne === null
               ? <PlayerInput
-                label='Player One'
-                onSubmit={(player) => this.handleSubmit('playerOne', player)}
-              />
+                  label='Player One'
+                  onSubmit={(player) => this.handleSubmit('playerOne', player)}
+                />
               : <PlayerPreview
-                username={playerOne}
-                label='Player One'
-                onReset={() => this.handleReset('playerOne')}
-              />
+                  username={playerOne}
+                  label='Player One'
+                  onReset={() => this.handleReset('playerOne')}
+                />
             }
 
             {playerTwo === null
               ? <PlayerInput
-                label='Player Two'
-                onSubmit={(player) => this.handleSubmit('playerTwo', player)}
-              />
+                  label='Player Two'
+                  onSubmit={(player) => this.handleSubmit('playerTwo', player)}
+                />
               : <PlayerPreview
-                username={playerTwo}
-                label='Player Two'
-                onReset={() => this.handleReset('playerTwo')}
-              />
+                  username={playerTwo}
+                  label='Player Two'
+                  onReset={() => this.handleReset('playerTwo')}
+                />
             }
           </div>
 

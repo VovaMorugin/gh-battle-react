@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Loading from './Loading'
 import Tooltip from './Tooltip'
 import queryString from 'query-string'
-import { Link }from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function ProfileList({ profile }) {
     return (
@@ -48,18 +48,16 @@ ProfileList.propTypes = {
 }
 
 export default class Results extends React.Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-            winner: null,
-            loser: null,
-            error: null,
-            loading: true
-        }
+    state = {
+        winner: null,
+        loser: null,
+        error: null,
+        loading: true
     }
+
     componentDidMount() {
-        
+
         const { playerOne, playerTwo } = queryString.parse(this.props.location.search)
 
         battle([playerOne, playerTwo])
