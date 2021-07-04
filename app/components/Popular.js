@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { fetchPopularRepos } from '../utils/api'
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons/fa'
@@ -6,7 +6,7 @@ import Card from './Card'
 import Loading from './Loading'
 import Tooltip from './Tooltip'
 
-function LangaugesNav({ selected, onUpdateLanguage }) {
+function LangaugesNav ({ selected, onUpdateLanguage }) {
   const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
 
   return (
@@ -30,7 +30,7 @@ LangaugesNav.propTypes = {
   onUpdateLanguage: PropTypes.func.isRequired
 }
 
-function ReposGrid({ repos }) {
+function ReposGrid ({ repos }) {
   return (
     <ul className='grid space-around'>
       {repos.map((repo, index) => {
@@ -80,14 +80,12 @@ ReposGrid.propTypes = {
 }
 
 export default class Popular extends React.Component {
-
   state = {
     selectedLanguage: 'All',
     repos: {},
     error: null,
   }
-
-  componentDidMount() {
+  componentDidMount () {
     this.updateLanguage(this.state.selectedLanguage)
   }
   updateLanguage = (selectedLanguage) => {
@@ -106,7 +104,7 @@ export default class Popular extends React.Component {
             }
           }))
         })
-        .catch((error) => {
+        .catch(() => {
           console.warn('Error fetching repos: ', error)
 
           this.setState({
